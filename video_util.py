@@ -59,6 +59,8 @@ def get_center_frame(video_path):
     """
     cap = cv2.VideoCapture(video_path)
     
+    print "cap.isOpened()", cap.isOpened()
+    
     length = int(cap.get(CV_FRAME_COUNT))
     print length
     success,image = cap.read()
