@@ -24,15 +24,14 @@ import numpy as np
 print "cv2.__version__", cv2.__version__
 
 print "Try"
+CV_FRAME_COUNT = None
 try:
-    CV_FRAME_COUNT = None
-
     if hasattr(cv2,"cv"):
         print "cv"
         CV_FRAME_COUNT = cv2.cv.CV_CAP_PROP_FRAME_COUNT
     else:
         print "cv not"
-        CV_FRAME_COUNT = cv2.CV_CAP_PROP_FRAME_COUNT
+        CV_FRAME_COUNT = cv2.CAP_PROP_FRAME_COUNT
 
     print CV_FRAME_COUNT
 except Exception as e:
@@ -58,7 +57,7 @@ def get_center_frame(video_path):
     """
     cap = cv2.VideoCapture(video_path)
     
-    length = int(cap.get(cv2.CV_CAP_PROP_FRAME_COUNT))
+    length = int(cap.get(CV_FRAME_COUNT))
     
     success,image = cap.read()
     count = 0
@@ -77,7 +76,7 @@ def get_frames_interval(video_path, frame_interval):
     """
     cap = cv2.VideoCapture(video_path)
     
-    length = int(cap.get(cv2.CV_CAP_PROP_FRAME_COUNT))
+    length = int(cap.get(CV_FRAME_COUNT))
     
     success,image = cap.read()
     count = 0
@@ -101,7 +100,7 @@ def get_n_frames(video_path, num_frame):
     """
     cap = cv2.VideoCapture(video_path)
     
-    length = int(cap.get(cv2.CV_CAP_PROP_FRAME_COUNT))
+    length = int(cap.get(CV_FRAME_COUNT))
     
     op_frame_idx = set(np.linspace(0, length - 2, num_frame, dtype=int)) 
     
