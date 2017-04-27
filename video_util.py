@@ -23,6 +23,17 @@ import numpy as np
 
 print "cv2.__version__", cv2.__version__
 
+CV_FRAME_COUNT = None
+
+if hasattr(cv2,"cv"):
+    CV_FRAME_COUNT = cv2.cv.CV_CAP_PROP_FRAME_COUNT
+    print "cv"
+else:
+    CV_FRAME_COUNT = cv2.CV_CAP_PROP_FRAME_COUNT
+    print "cv not"
+
+print CV_FRAME_COUNT
+
 def _get_image_from_array(image_array):
     #JPG to support tensorflow
     byte_arr = cv2.imencode(".jpg", image_array )[1]
