@@ -23,24 +23,21 @@ import numpy as np
 
 print "cv2.__version__", cv2.__version__
 
-print "Try"
 CV_FRAME_COUNT = None
-try:
-    if hasattr(cv2,"cv"):
-        print "cv"
-        CV_FRAME_COUNT = cv2.cv.CV_CAP_PROP_FRAME_COUNT
-    else:
-        print "cv not"
-        CV_FRAME_COUNT = cv2.CAP_PROP_FRAME_COUNT
 
-    print CV_FRAME_COUNT
-except Exception as e:
-    print "Error"
-    print e
-    
+if hasattr(cv2,"cv"):
+    CV_FRAME_COUNT = cv2.cv.CV_CAP_PROP_FRAME_COUNT
+else:
+    CV_FRAME_COUNT = cv2.CAP_PROP_FRAME_COUNT
+
 def _get_image_from_array(image_array):
     #JPG to support tensorflow
     byte_arr = cv2.imencode(".jpg", image_array )[1]
+    try:
+        print len(byte_arr)
+    except:
+        print byte_arr
+        
     return "".join(map(chr, byte_arr))
     
 def _path_leaf(path):
