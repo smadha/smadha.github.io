@@ -26,11 +26,11 @@ print "cv2.__version__", cv2.__version__
 CV_FRAME_COUNT = None
 
 if hasattr(cv2,"cv"):
-    CV_FRAME_COUNT = cv2.cv.CV_CAP_PROP_FRAME_COUNT
     print "cv"
+    CV_FRAME_COUNT = cv2.cv.CV_CAP_PROP_FRAME_COUNT
 else:
-    CV_FRAME_COUNT = cv2.CV_CAP_PROP_FRAME_COUNT
     print "cv not"
+    CV_FRAME_COUNT = cv2.CV_CAP_PROP_FRAME_COUNT
 
 print CV_FRAME_COUNT
 
