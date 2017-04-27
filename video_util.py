@@ -31,6 +31,11 @@ else:
     CV_FRAME_COUNT = cv2.CAP_PROP_FRAME_COUNT
 
 def _get_image_from_array(image_array):
+    try:
+        print len(image_array)
+    except:
+        print image_array
+        
     #JPG to support tensorflow
     byte_arr = cv2.imencode(".jpg", image_array )[1]
     try:
@@ -55,14 +60,14 @@ def get_center_frame(video_path):
     cap = cv2.VideoCapture(video_path)
     
     length = int(cap.get(CV_FRAME_COUNT))
-    
+    print length
     success,image = cap.read()
     count = 0
     
     while(success and count < length/2):
         success,image = cap.read()
         count += 1 
-    
+    print image
     return _get_image_from_array(image)
     
 def get_frames_interval(video_path, frame_interval):
