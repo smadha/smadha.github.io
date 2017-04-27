@@ -57,6 +57,10 @@ def get_center_frame(video_path):
     Traverse till half of video and saves center snapshot
     @param video_path: Path to video file on system
     """
+    print video_path
+    with open(video_path) as f:
+        print f.readline()
+    
     cap = cv2.VideoCapture(video_path)
     
     print "cap.isOpened()", cap.isOpened()
